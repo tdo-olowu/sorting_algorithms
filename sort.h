@@ -28,7 +28,7 @@ void print_list(const listint_t *list);
 
 
 /** SIMPLE SUBROUTINES */
-void swap(int *a, int *b);
+void swap(int *, int *);
 void insert(listint_t *, listint_t **);
 
 
