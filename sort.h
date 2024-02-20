@@ -29,7 +29,7 @@ void print_list(const listint_t *list);
 
 /** SIMPLE SUBROUTINES */
 void swap(int *a, int *b);
-void swap_dll(listint_t*, listint_t*);
+void insert(listint_t *, listint_t **);
 
 
 /* SORTING FUNCTIONS */

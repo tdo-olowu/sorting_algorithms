@@ -9,7 +9,8 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *pre_node, *crd_node, *nxt_node;
+	listint_t *pre_node, *crt_node, *nxt_node;
+	listint_t *head;
 	int crt_val, nxt_val;
 	size_t i;
 
@@ -18,42 +19,53 @@ void insertion_sort_list(listint_t **list)
 	crt_node = *list;
 	while (crt_node->prev != NULL)
 		crt_node = crt_node->prev;
+	head = crt_node;
+
 	i = 0;
-	while (crt_node != NULL)
+	/* while crt isn't tail, there's stuff ahead */
+	while (crt_node->next != NULL)
 	{
 		nxt_node = crt_node->next;
-		/* do the sorting here */
 		crt_val = crt_node->n;
-		if (nxt_node != NULL)
-			nxt_val = crt_node->next->n;
-		else
-			return;
+		nxt_val = nxt_node->n;
+		/* the comparison step */
+		if (crt_val > nxt_val)
+			insert(&crt_node, &head);
+		crt_node = crt_node->next;
 	}
 }
 
 
 
 /**
- * swap_dll - a swap procedure for a doubly-linked list
- * actually rearranges the 'connections' of the list.
+ * insert - a subroutine to aid insertion_sort
+ * essentially finds the place of the node in the head of the list.
+ * no need for error-checking here. main should handle that.
  *
- * @n1: address of the first node
- * @n2: address of the second node
+ * @head: address of the head of the doubly-linked list
+ * @node: the node to place in its proper place.
  * Return: no return value
  */
-void swap_dll(listint_t *n1, listint_t *n2)
+void insert(listint_t **node, listint_t **head)
 {
-	listint_t *n1_next, *n1_prev, *n2_next, *n2_prev;
+	listint_t *crt_node, *pre_node;
 
-	n1_next = n1->next;
-	n1_prev = n1->prev;
-	n2_next = n2->next;
-	n2_prev = n2->prev;
-
-	n1->next = n2_next;
-	n1->prev = n2_prev;
-	n2->next = n1_next;
-	n2->prev = n2_prev;
+	crt_node = *head;
+	while (crt_node != NULL)
+	{
+		pre_node = crt_node->prev;
+		if (*node->n <= crt_node->n)
+		{
+			/* rewire then leave */
+			*node->prev = crt_node->prev;
+			if (pre_node != NULL)
+				pre_node->next = *node;
+			*node->next = crt_node;
+			crt_node->prev = *node;
+			return;
+		}
+		crt_node = crt_node->next;
+	}
 
 	return;
 }
