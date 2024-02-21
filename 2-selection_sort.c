@@ -33,7 +33,6 @@ void selection_sort(int *array, size_t size)
 }
 
 
-/** SIMPLE SUBROUTINES */
 /**
  * swap - exchanges the values of two positions in array
  * @a: the address of the first position
