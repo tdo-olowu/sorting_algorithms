@@ -1,0 +1,12 @@
+For insertion sort, try creating a new doubly-linked list to store the result,
+then destroy the original linked list...but overwrite the value of &head as new_head.
+If you've done that successfully, then see if you can insert *in place*.
+Does that make sense?
+
+
+For quick sort Lomuto...
+	-3 4 19 -6 8 9 10 9
+two pointers i and j. Call them suplv (supermum of lesser values) and ubhv (upper bound of higher values).
+Choose pivot as last 9.
+Place suplv on A(0) and ubhv on A(1).
+Now, if A(

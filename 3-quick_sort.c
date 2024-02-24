@@ -1,4 +1,5 @@
 #include "sort.h"
+/* try using the stack to print. put the print at end of function */
 
 
 /**
@@ -19,13 +20,12 @@ void quick_sort(int *array, size_t size)
 
 	/* partition */
 	p = size - 1;
-	for (i = 0, j = 0 ; j < p ; ++j)
+	for (i = 1, j = 0 ; j < p ; ++j)
 	{
-		if (array[j] < array[p])
+		if (array[j] <= array[p])
 		{
 			++i;
 			swap(&array[j], &array[i]);
-			print_array(array, size);
 		}
 	}
 	swap(&array[i], &array[p]);
@@ -33,6 +33,7 @@ void quick_sort(int *array, size_t size)
 	/* recurse */
 	quick_sort(array, i);
 	quick_sort(&array[i + 1], size - 1 - i);
+	print_array(array, size);
 }
 
 
